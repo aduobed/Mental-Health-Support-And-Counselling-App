@@ -1,8 +1,7 @@
+from app.routers import user
 from fastapi import FastAPI
+
 
 app = FastAPI()
 
-
-@app.get("/")
-async def greet():
-  return {"message": "welcome to the project"}
+app.include_router(user.router)
