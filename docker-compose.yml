@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: frontend_service
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: mhsca/frontend:latest
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_started
+  backend:
+    container_name: backend_service
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: mhsca/backend:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+
+  db:
+    container_name: db
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
