@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: frontend_service
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  backend:
+    container_name: backend_service
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mysql+pymysql://user:password@db:3306/testdb
+
+  db:
+    container_name: db
+    image: mysql:8.0
+    ports:
+      - "33061:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=testdb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
