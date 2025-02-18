@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Home from './components/Home';
 import About from './components/About';
-import ContactUs from './components/ContactUs';
+import Resources from './components/Resources';  
 import AppointmentBooking from './components/AppointmentBooking';
 import Login from './components/Login';
 import Signup from './components/SignUp';
@@ -10,18 +10,16 @@ import profileImage from './profile.jpg';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const renderPage = () => {
-    console.log("Current Page:", currentPage); // Debugging
     switch (currentPage) {
       case 'home':
         return <Home />;
       case 'about':
         return <About />;
-      case 'contact':
-        return <ContactUs />;
+      case 'resources':  
+        return <Resources />;
       case 'appointment':
         return <AppointmentBooking />;
       case 'login':
@@ -34,18 +32,14 @@ function App() {
   };
 
   return (
-    <div className="App" onClick={() => setIsProfileMenuOpen(false)}> {/* Clicking anywhere else closes the dropdown */}
+    <div className="App" onClick={() => setIsProfileMenuOpen(false)}>
       <header className="Main-header">
-        <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          &#x22EE;
-        </div>
-
-        <h1 className="App-title">Mental Health and Wellness App</h1>
+        <h1 className="App-title" onClick={() => setCurrentPage('home')} style={{ cursor: 'pointer' }}>Mental Health and Wellness App</h1>
 
         <nav className="Nav-menu">
-          <button onClick={() => setCurrentPage('home')}>Home</button>
+          <button onClick={() => setCurrentPage('appointment')}>Appointment Booking</button>
           <button onClick={() => setCurrentPage('about')}>About Us</button>
-          <button onClick={() => setCurrentPage('contact')}>Contact Us</button>
+          <button onClick={() => setCurrentPage('resources')}>Resources</button>  {/* Updated to Resources */}
         </nav>
 
         {/* User Profile Section */}
@@ -63,13 +57,6 @@ function App() {
           )}
         </div>
       </header>
-
-      {/* Dropdown for Appointment Booking */}
-      {isMenuOpen && (
-        <div className="menu-dropdown">
-          <button onClick={() => setCurrentPage('appointment')}>Appointment Booking</button>
-        </div>
-      )}
 
       <div className="App-content">
         {currentPage === '' && (

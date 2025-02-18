@@ -11,9 +11,6 @@ const About = () => {
         We offer tools, resources, and guidance to help individuals manage stress, anxiety, 
         and overall mental wellness through personalized experiences.
       </p>
-      <p>
-        
-      </p>
 
       {/* Secure User Authentication Section */}
       <div className="about-section">
@@ -27,7 +24,7 @@ const About = () => {
       <div className="about-section">
         <h3>📚 Mental Health Resources</h3>
         <p>
-        "info"
+          "info"
         </p>
       </div>
 
@@ -35,7 +32,7 @@ const About = () => {
       <div className="about-section">
         <h3>🎮 Stress Level Analysis Through Gaming</h3>
         <p>
-        "info"
+          "info"
         </p>
       </div>
 
@@ -43,7 +40,15 @@ const About = () => {
       <div className="about-section">
         <h3>🤖 AI-Powered Chatbot Support</h3>
         <p>
-        "info"
+          "info"
+        </p>
+      </div>
+
+      {/* Contact Us Section */}
+      <div className="about-section">
+        <h3>📞 Contact Us</h3>
+        <p>
+          If you have any questions or need support, feel free to reach out to us at <strong>support@example.com</strong>.
         </p>
       </div>
     </div>
