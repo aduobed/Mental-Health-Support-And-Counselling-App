@@ -2,7 +2,6 @@ from sqlalchemy import Column, String, Integer, Boolean
 from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from app.database.database import Base
-
 import datetime
 
 
@@ -19,6 +18,7 @@ class User(Base):
 
     # Relationship: One User can have multiple Bookings
     bookings = relationship("Booking", back_populates="user")
+
 
 class Doctor(Base):
     __tablename__ = "doctors"
