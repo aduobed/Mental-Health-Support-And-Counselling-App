@@ -12,6 +12,8 @@ pymysql = "*"
 sqlalchemy = "*"
 python-dotenv = "*"
 python-multipart = "*"
+pytest = "*"
+httpx = "*"
 
 [dev-packages]
 

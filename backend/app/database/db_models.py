@@ -17,37 +17,37 @@ class User(Base):
     hashed_password = Column(String(255))
     phone_number = Column(String(50))
 
-#     # Relationship: One User can have multiple Bookings
-#     bookings = relationship("Booking", back_populates="user")
+    # Relationship: One User can have multiple Bookings
+    bookings = relationship("Booking", back_populates="user")
 
-# class Doctor(Base):
-#     __tablename__ = "doctors"
+class Doctor(Base):
+    __tablename__ = "doctors"
 
-#     id = Column(Integer, primary_key=True, index=True)
-#     email = Column(String(255), unique=True, index=True)
-#     username = Column(String(255), unique=True, index=True)
-#     first_name = Column(String(255))
-#     last_name = Column(String(255))
-#     hashed_password = Column(String(255))
-#     phone_number = Column(String(50))
-#     speciality = Column(String(255), nullable=False)
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String(255), unique=True, index=True)
+    username = Column(String(255), unique=True, index=True)
+    first_name = Column(String(255))
+    last_name = Column(String(255))
+    hashed_password = Column(String(255))
+    phone_number = Column(String(50))
+    speciality = Column(String(255), nullable=False)
 
-#     # Relationship: One Doctor can have multiple Bookings
-#     bookings = relationship("Booking", back_populates="doctor")
+    # Relationship: One Doctor can have multiple Bookings
+    bookings = relationship("Booking", back_populates="doctor")
 
 
-# class Booking(Base):
-#     __tablename__ = "bookings"
+class Booking(Base):
+    __tablename__ = "bookings"
 
-#     id = Column(Integer, primary_key=True, index=True)
-#     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-#     doctor_id = Column(Integer, ForeignKey("doctors.id"), nullable=False)
-#     booking_date = Column(DateTime, default=datetime.datetime.date)
-#     booking_time = Column(DateTime, default=datetime.datetime.utcnow)
-#     status = Column(String(50), default="pending")
-#     booking_note = Column(String(255), nullable=True)
-#     booking_feedback = Column(String(255), nullable=True)
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    doctor_id = Column(Integer, ForeignKey("doctors.id"), nullable=False)
+    booking_date = Column(DateTime, default=datetime.datetime.date)
+    booking_time = Column(DateTime, default=datetime.datetime.utcnow)
+    status = Column(String(50), default="pending")
+    booking_note = Column(String(255), nullable=True)
+    booking_feedback = Column(String(255), nullable=True)
 
-#     # Relationships: Each Booking is linked to a User and a Doctor
-#     user = relationship("User", back_populates="bookings")
-#     doctor = relationship("Doctor", back_populates="bookings")
+    # Relationships: Each Booking is linked to a User and a Doctor
+    user = relationship("User", back_populates="bookings")
+    doctor = relationship("Doctor", back_populates="bookings")

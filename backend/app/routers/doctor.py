@@ -35,7 +35,7 @@ async def get_doctor_by_email_and_password(data: Annotated[UserLoginModel, Form(
     return {"data": doctor}
 
 
-@router.post("/doctors/signup", status_code=status.HTTP_201_CREATED)
+@router.post("/doctor/signup", status_code=status.HTTP_201_CREATED)
 async def create_doctor(doctor: DoctorMod, db: Annotated[Session, Depends(start_db.get_db)]):
   doctor = db_models.Doctor(email=doctor.email, username=doctor.username,
                  first_name=doctor.first_name, last_name=doctor.last_name, hashed_password=doctor.password,
