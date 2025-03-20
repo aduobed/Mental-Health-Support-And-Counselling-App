@@ -12,7 +12,7 @@ const Signup = () => {
         <label htmlFor="lastname">Last Name:</label>
         <input type="text" id="lastname" name="lastname" required />
 
-        <label htmlFor="address">Address:</label>
+        <label htmlFor="address">Username:</label>
         <input type="text" id="address" name="address" required />
 
         <label htmlFor="phone">Phone Number:</label>
@@ -24,9 +24,6 @@ const Signup = () => {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password" required />
 
-        <label htmlFor="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" required />
-
         <button type="submit">Signup</button>
       </form>
     </div>
@@ -34,3 +31,4 @@ const Signup = () => {
 };
 
 export default Signup;
+
