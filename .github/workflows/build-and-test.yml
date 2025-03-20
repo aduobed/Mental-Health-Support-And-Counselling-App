@@ -61,7 +61,7 @@ jobs:
 
       - name: Test Docker Compose
         run: |
-          docker-compose -f docker-compose.yml up --build -d
+          docker compose -f docker-compose.yml up --build -d
           # docker-compose -f docker-compose.yml run backend pytest
           # docker-compose -f docker-compose.yml run frontend yarn test
-          docker-compose -f docker-compose.yml down
+          docker compose -f docker-compose.yml down
