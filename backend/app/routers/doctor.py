@@ -19,8 +19,19 @@ async def get_all_doctors(db: Annotated[Session, Depends(start_db.get_db)]):
     return {"data": doctors_data}
 
 
+@router.get("/doctor/{doctor_id}", status_code=status.HTTP_200_OK)
+async def get_doctor_by_id(doctor_id: int, db: Annotated[Session, Depends(start_db.get_db)]):
+    doctor = db.query(db_models.Doctor).filter(
+        db_models.Doctor.id == doctor_id).first()
+
+    if doctor is None:
+        return HTTPException(status_code=404, detail="Doctor not found", headers={"X-Doctor": "Doctor not Found"})
+
+    return {"data": doctor}
+
+
 @router.post("/doctor/login", status_code=status.HTTP_200_OK)
-async def get_doctor_by_email_and_password(data: Annotated[UserLoginModel, Form()], db: Annotated[Session, Depends(start_db.get_db)]):
+async def get_doctor_by_email_and_password(data: UserLoginModel, db: Annotated[Session, Depends(start_db.get_db)]):
     if data.username is None and data.password is None:
         return {"message": "Please provide username and password"}
 

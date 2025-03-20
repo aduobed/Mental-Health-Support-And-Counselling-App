@@ -56,7 +56,7 @@ async def create_booking(booking: BookingMod, db: Annotated[Session, Depends(sta
     return {"data": booking}
 
 
-@router.patch("/booking", status_code=status.HTTP_200_OK)
+@router.post("/booking", status_code=status.HTTP_200_OK)
 async def update_a_booking(booking: BookingMod, db: Annotated[Session, Depends(start_db.get_db)]):
 
     existing_booking = db.query(db_models.Booking).filter(
@@ -73,17 +73,20 @@ async def update_a_booking(booking: BookingMod, db: Annotated[Session, Depends(s
 
     db.add(existing_booking)
     db.commit()
+
     return {"message": "Booking has been added successfully"}
 
 
-@router.delete("/booking", status_code=status.HTTP_200_OK)
+@router.get("/booking", status_code=status.HTTP_200_OK)
 async def create_booking(booking: BookingMod, db: Annotated[Session, Depends(start_db.get_db)]):
     existing_booking = db.query(db_models.Booking).filter(
         db_models.Booking.id == booking.id).first()
 
     if existing_booking is None:
-        return HTTPException(status_code=404, detail="Booking not found", headers={"X-Booking": "Bookingnot Found"})
+        return HTTPException(status_code=404, detail="Booking not found", headers={"X-Booking": "Booking not Found"})
 
-    db.add(booking)
+    db.query(db_models.Booking).filter(
+        db_models.Booking.id == booking.id).delete()
     db.commit()
-    return {"message": "Booking has been updated successfully"}
+
+    return {"message": "Booking has been deleted successfully"}
