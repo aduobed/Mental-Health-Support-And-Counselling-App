@@ -19,8 +19,18 @@ async def get_all_users(db: Annotated[Session, Depends(start_db.get_db)]):
     return {"data": users_data}
 
 
+@router.get("/user/{user_id}", status_code=status.HTTP_200_OK)
+async def get_user_by_id(user_id: int, db: Annotated[Session, Depends(start_db.get_db)]):
+    user = db.query(db_models.User).filter(db_models.User.id == user_id).first()
+
+    if user is None:
+        return HTTPException(status_code=404, detail="User not found", headers={"X-User": "User not Found"})
+
+    return {"data": user}
+
+
 @router.post("/user/login", status_code=status.HTTP_200_OK)
-async def get_user_by_email_and_password(data: Annotated[UserLoginModel, Form()], db: Annotated[Session, Depends(start_db.get_db)]):
+async def get_user_by_username_and_password(data: UserLoginModel, db: Annotated[Session, Depends(start_db.get_db)]):
     if data.username is None and data.password is None:
         return {"message": "Please provide username and password"}
 
@@ -40,6 +50,14 @@ async def create_user(user: UserMod, db: Annotated[Session, Depends(start_db.get
     user_data = db_models.User(email=user.email, username=user.username,
                                first_name=user.first_name, last_name=user.last_name, hashed_password=user.password,
                                phone_number=user.phone_number)
+    db.add(user_data)
+    db.commit()
+    return {"message": "User has been added successfully"}
+
+
+@router.patch("/user", status_code=status.HTTP_200_OK)
+async def create_user(user: UserMod, db: Annotated[Session, Depends(start_db.get_db)]):
+    user = db.query(db_models.User).filter(db_models.User.email == user.email).first()
     db.add(user_data)
     db.commit()
     return {"message": "User has been added successfully"}
