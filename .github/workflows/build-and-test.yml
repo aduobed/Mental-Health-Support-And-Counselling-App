@@ -39,9 +39,9 @@ jobs:
         run: |
           docker build -t myapp/backend:latest ./backend
 
-      - name: Build frontend Docker image
-        run: |
-          docker build -t myapp/frontend:latest ./frontend
+      # - name: Build frontend Docker image
+      #   run: |
+      #     docker build -t myapp/frontend:latest ./frontend
 
       # - name: Run backend container
       #   run: |
