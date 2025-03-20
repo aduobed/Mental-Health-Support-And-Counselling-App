@@ -6,13 +6,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Connection string for PostgreSQL database
-# MYSQL_DATABASE_URL = os.getenv("DATABASE_URL")
+# Connection string for MySQL database
+MYSQL_DATABASE_URL = os.getenv("DATABASE_URL")
 
-# engine = create_engine(MYSQL_DATABASE_URL)
+engine = create_engine(MYSQL_DATABASE_URL)
 
 
-engine = create_engine("mysql+pymysql://user:password@127.0.0.1:3307/testdb")
+# engine = create_engine("mysql+pymysql://user:password@127.0.0.1:3307/testdb")
 
 SessionLocal = sessionmaker(
     bind=engine, autoflush=False, expire_on_commit=False)
