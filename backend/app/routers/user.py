@@ -1,13 +1,52 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Form, HTTPException, status
 from app.model.model import UserModel as UserMod
 from sqlalchemy.orm import Session
 from app.database import db_models, start_db
+from utils.user_login_model import UserLoginModel
 
-router = APIRouter()
+from typing import Annotated
+
+router = APIRouter(
+    prefix="/api",
+    tags=["User"]
+)
 
 
-@router.post("/users")
-async def create_user(user: UserMod, db: Session = Depends(start_db.get_db)):
+@router.get("/user", status_code=status.HTTP_200_OK)
+async def get_all_users(db: Annotated[Session, Depends(start_db.get_db)]):
+    users_data = db.query(db_models.User).all()
+
+    return {"data": users_data}
+
+
+@router.get("/user/{user_id}", status_code=status.HTTP_200_OK)
+async def get_user_by_id(user_id: int, db: Annotated[Session, Depends(start_db.get_db)]):
+    user = db.query(db_models.User).filter(db_models.User.id == user_id).first()
+
+    if user is None:
+        return HTTPException(status_code=404, detail="User not found", headers={"X-User": "User not Found"})
+
+    return {"data": user}
+
+
+@router.post("/user/login", status_code=status.HTTP_200_OK)
+async def get_user_by_username_and_password(data: UserLoginModel, db: Annotated[Session, Depends(start_db.get_db)]):
+    if data.username is None and data.password is None:
+        return {"message": "Please provide username and password"}
+
+    user = db.query(db_models.User).filter(db_models.User.username == data.username).first()
+
+    if user is None:
+        return HTTPException(status_code=404, detail="User not found", headers={"X-Username": "Username not Found"})
+
+    if user.hashed_password != data.password:
+        return HTTPException(status_code=404, detail="Invalid password", headers={"X-Password": "Password is incorrect"})
+
+    return {"data": user}
+
+
+@router.post("/user/signup", status_code=status.HTTP_201_CREATED)
+async def create_user(user: UserMod, db: Annotated[Session, Depends(start_db.get_db)]):
     user_data = db_models.User(email=user.email, username=user.username,
                                first_name=user.first_name, last_name=user.last_name, hashed_password=user.password,
                                phone_number=user.phone_number)
@@ -16,8 +55,9 @@ async def create_user(user: UserMod, db: Session = Depends(start_db.get_db)):
     return {"message": "User has been added successfully"}
 
 
-@router.get("/users")
-async def get_all_users(db: Session = Depends(start_db.get_db)):
-    users_data = db.query(db_models.User).all()
-
-    return {"users_data": users_data}
+@router.patch("/user", status_code=status.HTTP_200_OK)
+async def create_user(user: UserMod, db: Annotated[Session, Depends(start_db.get_db)]):
+    user = db.query(db_models.User).filter(db_models.User.email == user.email).first()
+    db.add(user_data)
+    db.commit()
+    return {"message": "User has been added successfully"}

@@ -11,6 +11,9 @@ python-jose = {extras = ["cryptography"], version = "*"}
 pymysql = "*"
 sqlalchemy = "*"
 python-dotenv = "*"
+python-multipart = "*"
+pytest = "*"
+httpx = "*"
 
 [dev-packages]
 
