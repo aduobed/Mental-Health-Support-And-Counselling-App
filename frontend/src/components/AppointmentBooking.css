@@ -20,7 +20,7 @@ body {
 .appointment-booking h2 {
   text-align: center;
   margin-bottom: 25px;
-  color: #3a6b9e;
+  color: #d78d05;
   font-size: 2rem;
   font-weight: 700;
 }
@@ -54,7 +54,7 @@ body {
 
 .appointment-booking input:focus,
 .appointment-booking textarea:focus {
-  border-color: #3a6b9e; /* Subtle blue focus border */
+  border-color: #ec9f11; /* Subtle blue focus border */
   box-shadow: 0px 0px 8px rgba(58, 107, 158, 0.2); /* Soft focus shadow */
 }
 
@@ -67,7 +67,7 @@ body {
 /* Button Styling */
 .appointment-booking button {
   padding: 14px;
-  background-color: #3a6b9e;
+  background-color: #d78d05;
   color: white;
   border: none;
   border-radius: 8px;
@@ -77,7 +77,7 @@ body {
 }
 
 .appointment-booking button:hover {
-  background-color: #2d5577; /* Darker blue on hover for emphasis */
+  background-color: #d78d05; /* Darker blue on hover for emphasis */
   transform: translateY(-3px); /* Button lift effect on hover */
 }
 
@@ -113,7 +113,7 @@ body {
 }
 
 .sign-up-check select:focus {
-  border-color: #3a6b9e;
+  border-color: #d78d05;
   box-shadow: 0px 0px 8px rgba(58, 107, 158, 0.2);
 }
 

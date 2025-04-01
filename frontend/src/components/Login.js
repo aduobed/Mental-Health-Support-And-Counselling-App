@@ -53,10 +53,10 @@ const Login = ({ role }) => {
             <h2>Welcome, {role === 'user' ? 'User' : 'Consultant'}!</h2>
 
             <form method="post">
-                <label htmlFor="lastname">Last Name:</label>
+                <label htmlFor="username">Username:</label>
                 <input
                     type="text"
-                    id="lastname"
+                    id="username"
                     name="username"
                     required
                     onChange={e => setUsername(e.target.value)}
