@@ -28,14 +28,14 @@
     background: #f8f9fa;
     padding: 20px;
     margin: 20px 0;
-    border-left: 6px solid #3a6b9e;
+    border-left: 6px solid #d78d05;
     border-radius: 8px;
     text-align: left;
   }
   
   .about-section h3 {
     font-size: 1.5rem;
-    color: #3a6b9e;
+    color: #d78d05;
     margin-bottom: 10px;
     font-weight: bold;
   }

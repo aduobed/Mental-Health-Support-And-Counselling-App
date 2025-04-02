@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
 import {
     BrowserRouter as Router,
     Routes,
@@ -15,53 +14,50 @@ import Login from './components/Login';
 import Signup from './components/SignUp';
 import './App.css';
 import profileImage from './profile.jpg';
+import logo from '/Users/saivenkatkumargunnapaneni/Documents/Venkat_Project/Mental-Health-Support-And-Counselling-App/frontend/src/Logo.png' // Import your logo here
+
 
 function App() {
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [roleSelection, setRoleSelection] = useState(null);
-    const navigate = useNavigate(); // Use useNavigate for programmatic navigation
+    const navigate = useNavigate();
     const location = useLocation();
-    const userData = location.state?.userData; // Access the passed data
+    const userData = location.state?.userData;
 
-
-    const handleRoleSelect = role => {
+    const handleRoleSelect = (role) => {
         setRoleSelection(role);
-        navigate('/login'); // Use navigate to go to login page after selecting role
+        navigate('/login');
         setIsProfileMenuOpen(false);
     };
 
-    const handleProfileClick = e => {
+    const handleProfileClick = (e) => {
         e.stopPropagation();
         setIsProfileMenuOpen(!isProfileMenuOpen);
         setRoleSelection(null);
     };
 
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     return (
         <div className="App" onClick={() => setIsProfileMenuOpen(false)}>
             <header className="Main-header">
-                <h1
-                    className="App-title"
-                    onClick={() => navigate('/')}
-                    style={{ cursor: 'pointer' }}
-                >
-                    Mental Health and Wellness App
-                </h1>
+                {/* Logo and Title Section */}
+                <div className="logo-section">
+                    <img src={logo} alt="App Logo" className="app-logo" />
+                    <h1
+                        className="App-title"
+                        onClick={toggleSidebar}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        Mental Health and Wellness App
+                    </h1>
+                </div>
 
-                <nav className="Nav-menu">
-                    <button onClick={() => navigate('/appointment')}>
-                        Appointment Booking
-                    </button>
-                    <button onClick={() => navigate('/about')}>About Us</button>
-                    <button onClick={() => navigate('/resources')}>
-                        Resources
-                    </button>
-                </nav>
-
-                {/* User Profile Section */}
-                <div
-                    className="profile-section"
-                    onClick={e => e.stopPropagation()}
-                >
+                {/* Profile Section on the Right */}
+                <div className="profile-section" onClick={(e) => e.stopPropagation()}>
                     <div className="profile-icon" onClick={handleProfileClick}>
                         <img
                             src={profileImage}
@@ -74,7 +70,7 @@ function App() {
                     {isProfileMenuOpen && (
                         <div className="profile-dropdown">
                             <button onClick={() => handleRoleSelect('user')}>
-                                { userData ? `Welcome, ${userData.data.username}` : 'User' }
+                                {userData ? `Welcome, ${userData.data.username}` : 'User'}
                             </button>
                             <button
                                 onClick={() => handleRoleSelect('consultant')}
@@ -86,7 +82,16 @@ function App() {
                 </div>
             </header>
 
-            <div className="App-content">
+            {/* Sidebar for Additional Options */}
+            <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+                <button onClick={() => navigate('/home')}>Home</button>
+                <button onClick={() => navigate('/appointment')}>Appointment Booking</button>
+                <button onClick={() => navigate('/about')}>About Us</button>
+                <button onClick={() => navigate('/resources')}>Resources</button>
+            </div>
+
+            {/* Main Content */}
+            <div className={`App-content ${isSidebarOpen ? 'shifted' : ''}`}>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/home" element={<Home />} />

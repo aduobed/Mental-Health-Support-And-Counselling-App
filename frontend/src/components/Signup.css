@@ -12,7 +12,7 @@
 
 /* Title Styling */
 .auth-container h2 {
-  color: #3a6b9e; /* Brand color for a professional touch */
+  color: #d78d05; /* Brand color for a professional touch */
   font-size: 1.8rem;
   font-weight: 500; /* Lighter weight for a clean title */
   margin-bottom: 15px; /* Space between title and form */
@@ -49,7 +49,7 @@
 }
 
 .auth-container input:focus {
-  border-color: #3a6b9e; /* Blue border on focus for emphasis */
+  border-color: #f5a206; /* Blue border on focus for emphasis */
   outline: none;
   box-shadow: 0px 0px 4px rgba(58, 107, 158, 0.5); /* Subtle shadow on focus */
 }
@@ -57,7 +57,7 @@
 /* Submit Button Styling */
 .auth-container button {
   padding: 10px;
-  background-color: #3a6b9e;
+  background-color: #f5a206;
   color: white;
   border: none;
   border-radius: 6px;
@@ -68,24 +68,24 @@
 }
 
 .auth-container button:hover {
-  background-color: #2d5577; /* Slightly darker blue on hover */
+  background-color: #f5a206; /* Slightly darker blue on hover */
   transform: scale(1.03); /* Slight increase in button size on hover */
 }
 
 .auth-container button:active {
-  background-color: #2a456b; /* Darker shade when clicked */
+  background-color: #f5a206; /* Darker shade when clicked */
   transform: scale(1); /* Reset scale on click */
 }
 
 /* Additional Spacing and Flexibility */
 .auth-container p {
   font-size: 0.95rem;
-  color: #666;
+  color: #f5a206;
   margin-top: 15px;
 }
 
 .auth-container p a {
-  color: #3a6b9e;
+  color: #f5a206;
   font-weight: 600;
   text-decoration: none;
 }

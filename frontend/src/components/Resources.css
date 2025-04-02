@@ -46,8 +46,8 @@ html, body {
   
   .tabs button {
     background-color: #fff;
-    border: 2px solid #0073e6;
-    color: #0073e6;
+    border: 2px solid #6c4a0a;
+    color: #ba8014;
     padding: 12px 24px;
     font-size: 18px;
     font-weight: bold;
@@ -57,12 +57,12 @@ html, body {
   }
   
   .tabs button:hover {
-    background-color: #0073e6;
+    background-color: #ba8014;
     color: white;
   }
   
   .tabs .active {
-    background-color: #0073e6;
+    background-color: #ba8014;
     color: white;
   }
   
@@ -87,12 +87,12 @@ html, body {
   
   .search-section input:focus,
   .search-section select:focus {
-    border-color: #0073e6;
+    border-color:#ba8014;
   }
   
   .search-section button {
     padding: 12px 20px;
-    background-color: #0073e6;
+    background-color: #ba8014;
     color: white;
     border: none;
     border-radius: 5px;
@@ -101,7 +101,7 @@ html, body {
   }
   
   .search-section button:hover {
-    background-color: #005bb5;
+    background-color: #946714;
   }
   
   /* Card Layout for Resources and Games */
@@ -156,8 +156,8 @@ html, body {
   
   .card button {
     background-color: #f7f7f7;
-    border: 2px solid #0073e6;
-    color: #0073e6;
+    border: 2px solid #7e5509;
+    color: #936613;
     padding: 10px;
     width: 100%;
     border-radius: 5px;
@@ -166,7 +166,7 @@ html, body {
   }
   
   .card button:hover {
-    background-color: #0073e6;
+    background-color: #8a5f0f;
     color: white;
   }
   
@@ -184,7 +184,7 @@ html, body {
   }
   
   .game-info button {
-    background-color: #0073e6;
+    background-color: #ba8014;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -193,20 +193,20 @@ html, body {
   }
   
   .game-info button:hover {
-    background-color: #005bb5;
+    background-color: #ba8014;
   }
   
   /* Header for Available Resources */
   .resources-list h3 {
     font-size: 24px;
-    color: #1e3a8a;
+    color: #ba8014;
     margin-bottom: 30px; /* Added margin-bottom for space */
   }
   
   /* Header for Available Games for Stress Management */
   .games-list h3 {
     font-size: 24px;
-    color: #1e3a8a;
+    color: #ba8014;
     margin-bottom: 30px; /* Added margin-bottom for space */
   }
   
