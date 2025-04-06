@@ -93,7 +93,7 @@ function App() {
             {/* Main Content */}
             <div className={`App-content ${isSidebarOpen ? 'shifted' : ''}`}>
                 <Routes>
-                    <Route path="/" element={<Login />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/resources" element={<Resources />} />
