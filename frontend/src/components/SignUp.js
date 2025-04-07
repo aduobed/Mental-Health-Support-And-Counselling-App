@@ -41,7 +41,6 @@ const Signup = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Signup successful:', data);
 
                 // Redirect to the dashboard or another page
                 navigate('/login', { state: { userData: data } });

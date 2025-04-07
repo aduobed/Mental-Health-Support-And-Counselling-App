@@ -34,7 +34,6 @@ const Login = ({ role }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data);
 
                 // Redirect to the dashboard or another page
                 navigate('/home', { state: { userData: data } });
