@@ -16,9 +16,13 @@ const Login = ({ role }) => {
     const handleLoginSubmit = async e => {
         e.preventDefault(); // Prevent the default form submission behavior
 
+        const apiUrl = role === 'user'
+            ? 'http://localhost:8000/api/user/login'
+            : 'http://localhost:8000/api/doctor/login';
+
         try {
             const response = await fetch(
-                'http://localhost:8000/api/user/login',
+                apiUrl,
                 {
                     method: 'POST',
                     headers: {
@@ -30,7 +34,6 @@ const Login = ({ role }) => {
                     }),
                 }
             );
-
 
             if (response.ok) {
                 const data = await response.json();
