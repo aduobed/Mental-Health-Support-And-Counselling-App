@@ -49,6 +49,11 @@ function App() {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const handleSignOut = () => {
+        setUserData(null); // Clear userData
+        navigate('/login'); // Redirect to the login page
+    };
+
     return (
         <UserContext.Provider value={{ userData, setUserData }}>
             <div className="App" onClick={() => setIsProfileMenuOpen(false)}>
@@ -66,8 +71,14 @@ function App() {
                     </div>
 
                     {/* Profile Section on the Right */}
-                    <div className="profile-section" onClick={(e) => e.stopPropagation()}>
-                        <div className="profile-icon" onClick={handleProfileClick}>
+                    <div
+                        className="profile-section"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <div
+                            className="profile-icon"
+                            onClick={handleProfileClick}
+                        >
                             <img
                                 src={profileImage}
                                 alt="User Profile"
@@ -78,14 +89,25 @@ function App() {
                         {/* Profile Dropdown */}
                         {isProfileMenuOpen && (
                             <div className="profile-dropdown">
-                                <button onClick={() => handleRoleSelect('user')}>
-                                    {userData ? `Welcome, ${userData.data.username}` : 'User'}
-                                </button>
                                 <button
-                                    onClick={() => handleRoleSelect('consultant')}
+                                    onClick={() => handleRoleSelect('user')}
                                 >
-                                    Consultant
+                                    {userData
+                                        ? `Welcome, ${userData.data.username}`
+                                        : 'User'}
                                 </button>
+                                {!userData && (
+                                    <button
+                                        onClick={() =>
+                                            handleRoleSelect('consultant')
+                                        }
+                                    >
+                                        Consultant
+                                    </button>
+                                )}
+                                {userData && (
+                                    <button onClick={handleSignOut}>Sign out</button>
+                                )}
                             </div>
                         )}
                     </div>
@@ -94,21 +116,36 @@ function App() {
                 {/* Sidebar for Additional Options */}
                 <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
                     <button onClick={() => navigate('/home')}>Home</button>
-                    <button onClick={() => navigate('/appointment')}>Appointment Booking</button>
+                    <button onClick={() => navigate('/appointment')}>
+                        Appointment Booking
+                    </button>
                     <button onClick={() => navigate('/about')}>About Us</button>
-                    <button onClick={() => navigate('/resources')}>Resources</button>
+                    <button onClick={() => navigate('/resources')}>
+                        Resources
+                    </button>
                 </div>
 
                 {/* Main Content */}
-                <div className={`App-content ${isSidebarOpen ? 'shifted' : ''}`}>
+                <div
+                    className={`App-content ${isSidebarOpen ? 'shifted' : ''}`}
+                >
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/home" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/resources" element={<Resources />} />
-                        <Route path="/appointment" element={<AppointmentBooking />} />
-                        <Route path="/login" element={<Login role={roleSelection} />} />
-                        <Route path="/signup" element={<Signup role={roleSelection} />} />
+                        <Route
+                            path="/appointment"
+                            element={<AppointmentBooking />}
+                        />
+                        <Route
+                            path="/login"
+                            element={<Login role={roleSelection} />}
+                        />
+                        <Route
+                            path="/signup"
+                            element={<Signup role={roleSelection} />}
+                        />
                     </Routes>
                 </div>
             </div>
