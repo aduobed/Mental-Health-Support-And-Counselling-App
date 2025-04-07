@@ -62,9 +62,6 @@ const Login = ({ role }) => {
                     onChange={e => setUsername(e.target.value)}
                 />
 
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
-
                 <label htmlFor="password">Password:</label>
                 <input
                     type="password"
@@ -81,7 +78,7 @@ const Login = ({ role }) => {
 
             <p className="signup-link">
                 First time here?
-                <span onClick={handleSignUpClick} className="signup-text">
+                <span onClick={handleSignUpClick} className="signup-text"><br></br>
                     Sign up
                 </span>
             </p>
