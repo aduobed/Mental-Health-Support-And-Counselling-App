@@ -46,7 +46,8 @@ async def get_doctor_by_email_and_password(data: UserLoginModel, db: Annotated[S
     if verify_password(data.password, doctor_hash_password) is False:
         return HTTPException(status_code=404, detail="Invalid password", headers={"X-Password": "Password is incorrect"})
 
-    return {"data": doctor}
+    return {"data": {"username": doctor.username, "email": doctor.email, "first_name": doctor.first_name, "last_name": doctor.last_name,
+            "phone_number": doctor.phone_number, "doctor_id": doctor.id, "speciality": doctor.speciality}}
 
 
 @router.post("/doctor/signup", status_code=status.HTTP_201_CREATED)
