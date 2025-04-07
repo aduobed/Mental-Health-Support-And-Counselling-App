@@ -84,7 +84,7 @@ def test_create_booking(db_session):
         "doctor_id": 1,
         "booking_date": "2025-07-10",
         "booking_time": "2025-07-10",
-        "status": "pending",
+        "booking_status": "pending",
         "booking_note": "",
         "booking_feedback": ""
     })
@@ -131,7 +131,7 @@ def create_test_booking():
         "doctor_id": 1,
         "booking_date": "2025-07-10",
         "booking_time": "2025-07-10",
-        "status": "pending",
+        "booking_status": "pending",
         "booking_note": "",
         "booking_feedback": ""
     })
