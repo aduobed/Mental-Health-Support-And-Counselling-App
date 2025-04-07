@@ -33,13 +33,13 @@ function App() {
         }
     }, [location.state]);
 
-    const handleRoleSelect = (role) => {
+    const handleRoleSelect = role => {
         setRoleSelection(role);
         navigate('/login');
         setIsProfileMenuOpen(false);
     };
 
-    const handleProfileClick = (e) => {
+    const handleProfileClick = e => {
         e.stopPropagation();
         setIsProfileMenuOpen(!isProfileMenuOpen);
         setRoleSelection(null);
@@ -93,7 +93,7 @@ function App() {
                                     onClick={() => handleRoleSelect('user')}
                                 >
                                     {userData
-                                        ? `Welcome, ${userData.data.username}`
+                                        ? `Welcome, ${userData.username}`
                                         : 'User'}
                                 </button>
                                 {!userData && (
@@ -106,7 +106,9 @@ function App() {
                                     </button>
                                 )}
                                 {userData && (
-                                    <button onClick={handleSignOut}>Sign out</button>
+                                    <button onClick={handleSignOut}>
+                                        Sign out
+                                    </button>
                                 )}
                             </div>
                         )}

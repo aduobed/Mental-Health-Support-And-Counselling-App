@@ -26,7 +26,7 @@ async def get_doctor_by_id(doctor_id: int, db: Annotated[Session, Depends(start_
         db_models.Doctor.id == doctor_id).first()
 
     if doctor is None:
-        return HTTPException(status_code=404, detail="Doctor not found", headers={"X-Doctor": "Doctor not Found"})
+        raise HTTPException(status_code=404, detail="Doctor not found", headers={"X-Doctor": "Doctor not Found"})
 
     return doctor
 
@@ -40,11 +40,11 @@ async def get_doctor_by_email_and_password(data: UserLoginModel, db: Annotated[S
         db_models.Doctor.username == data.username).first()
 
     if doctor is None:
-        return HTTPException(status_code=404, detail="Doctor not found", headers={"X-Username": "Doctor not Found"})
+        raise HTTPException(status_code=404, detail="Doctor not found", headers={"X-Username": "Doctor not Found"})
 
     doctor_hash_password = get_password_hash(data.password)
     if verify_password(data.password, doctor_hash_password) is False:
-        return HTTPException(status_code=404, detail="Invalid password", headers={"X-Password": "Password is incorrect"})
+        raise HTTPException(status_code=404, detail="Invalid password", headers={"X-Password": "Password is incorrect"})
 
     return doctor
 

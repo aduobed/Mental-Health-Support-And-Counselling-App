@@ -16,24 +16,22 @@ const Login = ({ role }) => {
     const handleLoginSubmit = async e => {
         e.preventDefault(); // Prevent the default form submission behavior
 
-        const apiUrl = role === 'user'
-            ? 'http://localhost:8000/api/user/login'
-            : 'http://localhost:8000/api/doctor/login';
+        const apiUrl =
+            role === 'user'
+                ? 'http://localhost:8000/api/user/login'
+                : 'http://localhost:8000/api/doctor/login';
 
         try {
-            const response = await fetch(
-                apiUrl,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username,
-                        password,
-                    }),
-                }
-            );
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            });
 
             if (response.ok) {
                 const data = await response.json();
@@ -43,6 +41,7 @@ const Login = ({ role }) => {
             } else {
                 const errorData = await response.json();
                 setError(errorData.detail || 'Login failed. Please try again.');
+                alert(`Error: ${errorData.detail}`); // Show an alert with the error detail
             }
         } catch (err) {
             console.error('Error during login:', err);
@@ -80,7 +79,8 @@ const Login = ({ role }) => {
 
             <p className="signup-link">
                 First time here?
-                <span onClick={handleSignUpClick} className="signup-text"><br></br>
+                <span onClick={handleSignUpClick} className="signup-text">
+                    <br></br>
                     Sign up
                 </span>
             </p>

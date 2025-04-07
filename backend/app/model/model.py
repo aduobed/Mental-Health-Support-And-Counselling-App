@@ -34,7 +34,7 @@ class BookingModel(BaseModel):
     user_id: int
     doctor_id: int
     booking_date: Optional[str] = Field(None, example="2023-10-01")
-    booking_time: Optional[str] = Field(None, example="10:00 AM")
+    booking_time: Optional[str] = Field(None, example="10:00")
     booking_status: Optional[BookingStatus] = Field(None, example="pending")
     booking_note: Optional[str] = Field(None)
     booking_feedback: Optional[str] = Field(None)

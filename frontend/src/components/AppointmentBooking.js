@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext, use } from 'react';
 import './AppointmentBooking.css';
 import { UserContext } from '../App';
+import { useNavigate } from 'react-router-dom';
 
 const AppointmentBooking = () => {
     const [isSignedUp, setIsSignedUp] = useState(''); // Track if the user has signed up
     const [doctors, setDoctors] = useState([]); // Store the list of doctors
     const [selectedDoctor, setSelectedDoctor] = useState(''); // Track the selected doctor
     const { userData } = useContext(UserContext);
+    const navigate = useNavigate();
 
     // Fetch the list of doctors from the API
     useEffect(() => {
@@ -17,7 +19,7 @@ const AppointmentBooking = () => {
                 ); // Replace with your API URL
                 if (response.ok) {
                     const data = await response.json();
-                    setDoctors(data.data || []); // Extract the array of doctors from the object
+                    setDoctors(data || []); // Extract the array of doctors from the object
                 } else {
                     console.error('Failed to fetch doctors');
                 }
@@ -44,7 +46,7 @@ const AppointmentBooking = () => {
             booking_time: document.getElementById('time').value,
             doctor_id: selectedDoctor,
             booking_note: document.getElementById('note').value,
-            user_id: userData?.data?.user_id,
+            user_id: userData?.id,
         };
 
         console.log('userData', userData);
@@ -60,6 +62,7 @@ const AppointmentBooking = () => {
 
             if (response.ok) {
                 alert('Appointment booked successfully!');
+                navigate('/home'); // Redirect to the home page
             } else {
                 const errorData = await response.json();
                 alert(

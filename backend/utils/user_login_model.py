@@ -1,4 +1,6 @@
 from pydantic import BaseModel, Field
+from typing import Optional
+from utils.booking_status import BookingStatus
 
 
 class UserLoginModel(BaseModel):
@@ -25,3 +27,13 @@ class DoctorResponseModel(BaseModel):
     last_name: str
     phone_number: str
     speciality: str
+
+class BookingResponseModel(BaseModel):
+    id: int
+    user_id: int
+    doctor_id: int
+    booking_date: str
+    booking_time: str
+    booking_status: str
+    booking_note: Optional[str] = Field(None)
+    booking_feedback: Optional[str] = Field(None)

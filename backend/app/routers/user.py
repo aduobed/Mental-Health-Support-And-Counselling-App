@@ -40,12 +40,12 @@ async def login_user_by_username_and_password(data: UserLoginModel, db: Annotate
         db_models.User.username == data.username).first()
 
     if user is None:
-        return HTTPException(status_code=404, detail="User not found", headers={"X-Username": "Username not Found"})
+        raise HTTPException(status_code=404, detail="User not found", headers={"X-Username": "Username not Found"})
 
     user_hash_password = get_password_hash(data.password)
 
     if verify_password(data.password, user_hash_password) is False:
-        return HTTPException(status_code=404, detail="Invalid password", headers={"X-Password": "Password is incorrect"})
+        raise HTTPException(status_code=404, detail="Invalid password", headers={"X-Password": "Password is incorrect"})
 
     return user
 
@@ -68,7 +68,7 @@ async def edit_user_by_id(user: UserMod, db: Annotated[Session, Depends(start_db
         db_models.User.username == user.username).first()
 
     if user_data is None:
-        return HTTPException(status_code=404, detail="User not found", headers={"X-Username": "Username not Found"})
+        raise HTTPException(status_code=404, detail="User not found", headers={"X-Username": "Username not Found"})
 
     user_data.email = user.email
     user_data.username = user.username
@@ -89,7 +89,7 @@ async def delete_user_by_id(user_id: int, db: Annotated[Session, Depends(start_d
         db_models.User.id == user_id).first()
 
     if user_data is None:
-        return HTTPException(status_code=404, detail="User not found", headers={"X-User": "User not Found"})
+        raise HTTPException(status_code=404, detail="User not found", headers={"X-User": "User not Found"})
 
     db.query(db_models.User).filter(
         db_models.User.id == user_id).delete()
