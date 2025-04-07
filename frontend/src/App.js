@@ -14,7 +14,7 @@ import Login from './components/Login';
 import Signup from './components/SignUp';
 import './App.css';
 import profileImage from './profile.jpg';
-import logo from '/Users/saivenkatkumargunnapaneni/Documents/Venkat_Project/Mental-Health-Support-And-Counselling-App/frontend/src/Logo.png' // Import your logo here
+import logo from './Logo.png';
 
 
 function App() {
