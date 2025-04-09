@@ -12,7 +12,7 @@ MYSQL_DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(MYSQL_DATABASE_URL)
 
 
-# engine = create_engine("mysql+pymysql://user:password@127.0.0.1:3307/testdb")
+# engine = create_engine("mysql+pymysql://user:password@127.0.0.1:3309/testdb")
 
 SessionLocal = sessionmaker(
     bind=engine, autoflush=False, expire_on_commit=False)

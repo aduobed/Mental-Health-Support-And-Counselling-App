@@ -16,31 +16,32 @@ const Login = ({ role }) => {
     const handleLoginSubmit = async e => {
         e.preventDefault(); // Prevent the default form submission behavior
 
-        try {
-            const response = await fetch(
-                'http://localhost:8000/api/user/login',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username,
-                        password,
-                    }),
-                }
-            );
+        const apiUrl =
+            role === 'user'
+                ? 'http://localhost:8000/api/user/login'
+                : 'http://localhost:8000/api/doctor/login';
 
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            });
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data);
 
                 // Redirect to the dashboard or another page
                 navigate('/home', { state: { userData: data } });
             } else {
                 const errorData = await response.json();
                 setError(errorData.detail || 'Login failed. Please try again.');
+                alert(`Error: ${errorData.detail}`); // Show an alert with the error detail
             }
         } catch (err) {
             console.error('Error during login:', err);
@@ -62,9 +63,6 @@ const Login = ({ role }) => {
                     onChange={e => setUsername(e.target.value)}
                 />
 
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
-
                 <label htmlFor="password">Password:</label>
                 <input
                     type="password"
@@ -82,6 +80,7 @@ const Login = ({ role }) => {
             <p className="signup-link">
                 First time here?
                 <span onClick={handleSignUpClick} className="signup-text">
+                    <br></br>
                     Sign up
                 </span>
             </p>
