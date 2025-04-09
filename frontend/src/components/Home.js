@@ -1,4 +1,11 @@
+import './Home.css';
+
 function Home() {
-    return <h2>Welcome to the Home Page</h2>;
-  }
-  export default Home;
+  return (
+    <div className="home-container">
+      <div className="home-text">Welcome to the Home Page</div>
+    </div>
+  );
+}
+
+export default Home;

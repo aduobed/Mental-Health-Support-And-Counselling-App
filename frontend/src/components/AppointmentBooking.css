@@ -1,22 +1,42 @@
-/* Set the background color for the entire page */
-body {
-  background-color: #f4f4f4; /* Soft background color for a fresh feel */
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif; /* Clean, modern font */
+/* Full page container */
+.appointment-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Main Appointment Form Container */
+/* Sharp background image (no blur) */
+.appointment-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('/Users/saivenkatkumargunnapaneni/Documents/Venkat_Project/Mental-Health-Support-And-Counselling-App/frontend/src/components/appointment_bg.png');
+  background-size:50cm;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: none; /* No blur */
+  z-index: 0;
+}
+
+/* Foreground form content */
 .appointment-booking {
+  position: relative;
+  z-index: 1;
   padding: 30px;
   max-width: 600px;
-  margin: 40px auto; /* Center the form with space above and below */
-  background-color: #fff; /* White background for contrast and clarity */
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.85); /* Slight white overlay for readability */
   border-radius: 12px;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Title Styling */
+/* Title styling */
 .appointment-booking h2 {
   text-align: center;
   margin-bottom: 25px;
@@ -25,46 +45,44 @@ body {
   font-weight: 700;
 }
 
-/* Form Layout (Column layout with reduced gaps for a clean look) */
+/* Form layout */
 .appointment-booking form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Moderate space between form fields for clarity */
+  gap: 20px;
 }
 
-/* Label Styling */
 .appointment-booking label {
   font-size: 1.1rem;
   font-weight: 600;
   color: #333;
 }
 
-/* Input and Textarea Styling */
 .appointment-booking input,
-.appointment-booking textarea {
+.appointment-booking textarea,
+.sign-up-check select {
   padding: 14px;
-  margin-bottom: 15px; /* Increased bottom margin for clearer separation */
   border: 1px solid #ccc;
-  border-radius: 8px; /* Rounded corners for modern feel */
+  border-radius: 8px;
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
 }
 
 .appointment-booking input:focus,
-.appointment-booking textarea:focus {
-  border-color: #ec9f11; /* Subtle blue focus border */
-  box-shadow: 0px 0px 8px rgba(58, 107, 158, 0.2); /* Soft focus shadow */
+.appointment-booking textarea:focus,
+.sign-up-check select:focus {
+  border-color: #ec9f11;
+  box-shadow: 0px 0px 8px rgba(58, 107, 158, 0.2);
 }
 
-/* Textarea Styling (Reason for Consultation) */
 .appointment-booking textarea {
-  height: 150px; /* Slightly larger height for better readability */
-  resize: vertical; /* Allow user to resize vertically */
+  height: 150px;
+  resize: vertical;
 }
 
-/* Button Styling */
 .appointment-booking button {
   padding: 14px;
   background-color: #d78d05;
@@ -77,56 +95,27 @@ body {
 }
 
 .appointment-booking button:hover {
-  background-color: #d78d05; /* Darker blue on hover for emphasis */
-  transform: translateY(-3px); /* Button lift effect on hover */
+  background-color: #b06f02;
+  transform: translateY(-3px);
 }
 
 .appointment-booking button:active {
-  transform: translateY(1px); /* Slight press effect when clicked */
+  transform: translateY(1px);
 }
 
-/* Confirmation Checkbox Styling */
 .appointment-booking input[type="checkbox"] {
   margin-right: 12px;
 }
 
-.appointment-booking .confirm-label {
-  display: flex;
-  align-items: center;
-  font-size: 0.95rem;
-  color: #555;
-}
-
-/* Signup check dropdown styling */
 .sign-up-check {
-  margin-bottom: 20px; /* Space between question and form */
+  margin-bottom: 20px;
 }
 
-.sign-up-check select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  width: 100%;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.sign-up-check select:focus {
-  border-color: #d78d05;
-  box-shadow: 0px 0px 8px rgba(58, 107, 158, 0.2);
-}
-
-/* Adding responsiveness */
+/* Responsive */
 @media (max-width: 768px) {
   .appointment-booking {
     padding: 20px;
     max-width: 90%;
-  }
-
-  .appointment-booking input,
-  .appointment-booking button {
-    font-size: 0.95rem;
   }
 
   .appointment-booking h2 {
@@ -138,8 +127,5 @@ body {
   .appointment-booking h2 {
     font-size: 1.6rem;
   }
-  .appointment-booking input,
-  .appointment-booking button {
-    font-size: 0.9rem;
-  }
 }
+

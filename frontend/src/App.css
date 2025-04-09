@@ -1,4 +1,4 @@
-/* Global Styles */
+ /* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f4f4f4;
+  background-color: #c4c1c1;
   color: #333;
 }
 
@@ -179,3 +179,5 @@ body {
 .App-content.shifted {
   margin-right: 250px; /* Shift the content to make room for the sidebar */
 }
+
+
