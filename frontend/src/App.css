@@ -1,4 +1,4 @@
-/* Global Styles */
+ /* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -179,3 +179,5 @@ body {
 .App-content.shifted {
   margin-right: 250px; /* Shift the content to make room for the sidebar */
 }
+
+
