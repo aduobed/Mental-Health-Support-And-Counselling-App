@@ -15,6 +15,9 @@ import Signup from './components/SignUp';
 import './App.css';
 import profileImage from './profile.jpg';
 import logo from './Logo.png';
+import UserAppointments from './components/UserAppointments';
+import ChatbotButton from './components/ChatbotButton';
+
 
 // Create a UserContext
 export const UserContext = createContext(null);
@@ -136,6 +139,7 @@ function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/resources" element={<Resources />} />
+                        <Route path="/UserAppointments" element={<UserAppointments />} />
                         <Route
                             path="/appointment"
                             element={<AppointmentBooking />}
@@ -148,7 +152,10 @@ function App() {
                             path="/signup"
                             element={<Signup role={roleSelection} />}
                         />
+                        
                     </Routes>
+                    
+                    <ChatbotButton />
                 </div>
             </div>
         </UserContext.Provider>

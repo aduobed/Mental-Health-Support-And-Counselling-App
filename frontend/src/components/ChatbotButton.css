@@ -1,0 +1,99 @@
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;  /* Ensures the chatbot is aligned to the bottom */
+    right: 20px;   /* Ensures the chatbot is aligned to the right */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.chatbot-button {
+    background-color: #d39b5c; /* Adjusted color */
+    border: none;
+    border-radius: 50%;
+    padding: 15px; /* Larger button */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;  /* Ensure it's above the window */
+}
+
+.chatbot-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.chatbot-button img {
+    width: 100px; /* Adjust icon size */
+    height: 100px;
+    object-fit: contain;
+}
+
+.chatbot-window {
+    width: 350px;  /* Adjusted width */
+    height: 250px; /* Adjusted height */
+    background-color: #f4f4f9; /* Light gray background */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    position: absolute;
+    bottom: 75px; /* Ensures it's placed below the button */
+}
+
+.chatbot-window.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.chatbot-header {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.chatbot-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.chatbot-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chatbot-footer input {
+    width: 80%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.chatbot-footer button {
+    background-color: #eec167;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chatbot-footer button:hover {
+    background-color: #e6ba5d;
+}

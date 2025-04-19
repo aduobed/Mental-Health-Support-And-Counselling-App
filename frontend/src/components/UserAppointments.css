@@ -1,0 +1,189 @@
+/* Global Styles */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.appointments-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* Grid Layout */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 7-8 blocks, responsive */
+  gap: 2rem;
+  grid-template-rows: auto;
+}
+
+/* Each Section Styling */
+.section {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Welcome Header */
+.welcome-header {
+  grid-column: span 2; /* span 2 columns for a larger section */
+  text-align: center;
+}
+
+.welcome-header h1 {
+  font-size: 3rem;
+}
+
+.welcome-header p {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+/* Mood Tracker */
+.mood-tracker h3 {
+  font-size: 1.6rem;
+}
+
+.mood-tracker select {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  margin-top: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.mood-tracker select:focus {
+  border-color: #d78d05;
+}
+
+/* Appointment Cards */
+.appointments h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.appointment-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.appointment-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.appointment-card p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.appointment-card .actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+/* Goal Progress */
+.goal-progress h3 {
+  font-size: 2rem;
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 20px;
+  margin-bottom: 1rem;
+}
+
+.progress {
+  background-color: #d78d05;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* Inspirational Quote */
+.inspirational-quote h3 {
+  font-size: 2rem;
+}
+
+.inspirational-quote p {
+  font-size: 1.2rem;
+  color: #555;
+  font-style: italic;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 100%; /* Ensure it uses full width */
+  box-sizing: border-box; /* Include padding in the total width */
+}
+.stat-card {
+  background-color: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Include padding in the total width/height */
+  height: 100%; /* Ensure cards stretch equally */
+}
+
+.stat-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2563eb;
+}
+.stat-card:hover {
+  background-color: #f7f7f7;
+}
+
+
+
+/* Empty Space Section */
+.empty-space {
+  background-color: transparent;
+}
+
+
+@media (max-width: 1024px) {
+  .summary-stats {
+    grid-template-columns: repeat(2, 1fr); /* For medium screens, 2 columns */
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-stats {
+    grid-template-columns: 1fr; /* For small screens, 1 column */
+  }
+}
+
