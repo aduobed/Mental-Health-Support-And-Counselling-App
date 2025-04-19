@@ -1,7 +1,7 @@
 /* Apply background only to the About Us page */
 .about-page {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-    url('./aboutus_bg.png') center/cover no-repeat; /* Replace with your background image URL */
+    url('./Images/aboutus_bg.png') center/cover no-repeat; /* Replace with your background image URL */
   background-attachment: fixed;
   background-size: cover; /* Ensure the image covers the entire page */
   min-height: 100vh; /* Ensure background is at least the full height of the viewport */

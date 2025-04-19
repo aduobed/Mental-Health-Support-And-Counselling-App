@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import chatbotIcon from './chatboticon.png'; // Ensure this path is correct
+import chatbotIcon from './Images/chatboticon.png'; // Ensure this path is correct
 import './ChatbotButton.css';
 
 function ChatbotButton() {

@@ -16,7 +16,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url('/Users/saivenkatkumargunnapaneni/Documents/Venkat_Project/Mental-Health-Support-And-Counselling-App/frontend/src/components/appointment_bg.png'); /* Ensure correct relative path */
+  background-image: url('./Images/appointment_bg.png'); /* Ensure correct relative path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

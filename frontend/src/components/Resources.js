@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Resources.css';
-import backgroundImage from '/Users/saivenkatkumargunnapaneni/Documents/Venkat_Project/Mental-Health-Support-And-Counselling-App/frontend/src/components/resources_bg.jpg';  
+import backgroundImage from './Images/resources_bg.jpg';  
 
 const Resources = () => {
   const [searchQuery, setSearchQuery] = useState('');

@@ -10,7 +10,7 @@
 
 /* Hero Section */
 .hero-section {
-  background-image: url('/Users/saivenkatkumargunnapaneni/Documents/Venkat_Project/Mental-Health-Support-And-Counselling-App/frontend/src/components/home_bg.png');
+  background-image: url('./Images/home_bg.png');
   background-size: cover;
   background-position: center;
   position: relative;

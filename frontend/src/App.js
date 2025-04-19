@@ -144,6 +144,7 @@ function App() {
                             path="/appointment"
                             element={<AppointmentBooking />}
                         />
+                        
                         <Route
                             path="/login"
                             element={<Login role={roleSelection} />}
