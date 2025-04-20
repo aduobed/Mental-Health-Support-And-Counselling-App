@@ -36,8 +36,15 @@ const Login = ({ role }) => {
             if (response.ok) {
                 const data = await response.json();
 
-                // Redirect to the dashboard or another page
-                navigate('/home', { state: { userData: data } });
+                // Redirect based on role
+                if (role === 'user') {
+                    navigate('/home', { state: { userData: data } });
+                } else if (role === 'consultant') {
+                    navigate('/UserAppointments', { state: { userData: data } });
+                } else {
+                    // fallback if role is not recognized
+                    navigate('/home', { state: { userData: data } });
+                }
             } else {
                 const errorData = await response.json();
                 setError(errorData.detail || 'Login failed. Please try again.');
@@ -80,7 +87,7 @@ const Login = ({ role }) => {
             <p className="signup-link">
                 First time here?
                 <span onClick={handleSignUpClick} className="signup-text">
-                    <br></br>
+                    <br />
                     Sign up
                 </span>
             </p>

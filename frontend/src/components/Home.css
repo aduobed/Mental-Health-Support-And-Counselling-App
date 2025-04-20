@@ -1,42 +1,190 @@
-/* Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+
+.home-wrapper {
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+  color: #2c2c2c;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section */
+.hero-section {
+  background-image: url('./Images/home_bg.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.main-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  animation: slideInFromBottom 1s ease-out;
+}
+
+.subtitle {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  color: #eee;
+  animation: slideInFromBottom 1s ease-out 0.5s;
+}
+
+.cta-button {
+  padding: 16px 36px;
+  background-color: #f5a206;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: fadeIn 2s ease-in-out 1.5s;
+}
+
+.cta-button:hover {
+  transform: translateY(-4px);
+  background-color: #ffb933;
+}
 
 
-    .home-container {
-        position: relative;
-        background-image: url('/Users/saivenkatkumargunnapaneni/Documents/Venkat_Project/Mental-Health-Support-And-Counselling-App/frontend/src/components/home_bg.png'); /* make sure this path matches your image location */
+/* Features Section */
+.features-section {
+  background: linear-gradient(135deg, #fffefb, #f8f6f0);
+  padding: 100px 20px 80px;
+  text-align: center;
+  animation: fadeIn 2s ease-out;
+}
 
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-      }
-      
-      /* Blurred overlay */
-      .home-container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        backdrop-filter: blur(5px); /* Blur the background */
-        background-color: rgba(0, 0, 0, 0.4); /* Slight dark tint */
-        z-index: 1;
-      }
-      
-      /* Text on top */
-      .home-text {
-        position: relative;
-        z-index: 2;
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: white;
-        text-align: center;
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-      }
-      
+.features-section h2 {
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.feature-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: left;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.feature-card h3 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Quote Section */
+.quote-section {
+  background-color: #222;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-style: italic;
+  animation: fadeInUp 2s ease-out;
+}
+
+blockquote {
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.8;
+  font-size: 1.2rem;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 12px 28px;
+  }
+
+  .stats-grid, .features-grid {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

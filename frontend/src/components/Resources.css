@@ -1,212 +1,165 @@
 /* Remove default margin and padding */
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Main Container */
+.resources-container {
+  padding: 50px 40px;
+  background-size: cover; /* Ensure the background image covers the full container */
+  background-position: center; /* Center the image */
+  background-attachment: fixed; /* Optional: Keeps the background fixed for a parallax effect */
+  position: relative; /* For the overlay */
+  font-family: 'Georgia', serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 100%; /* Ensure the container spans the entire width */
+  min-height: 100vh; /* Ensures the container takes the full height of the viewport, even with scrolling */
+  box-sizing: border-box; /* Include padding in width/height calculations */
+  overflow-x: hidden; /* Hide any overflow horizontally */
+}
+
+/* Overlay */
+.resources-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay with some transparency */
+  z-index: -1; /* Ensures the overlay is behind the content */
+}
+
+/* Search Section */
+.search-section {
+  margin-bottom: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.search-section select,
+.search-section input {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  transition: border-color 0.3s ease;
+  width: 250px;
+}
+
+.search-section input:focus,
+.search-section select:focus {
+  border-color: #ba8014;
+}
+
+.search-section button {
+  padding: 12px 20px;
+  background-color: #ba8014;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-section button:hover {
+  background-color: #946714;
+}
+
+/* Card Layout for Resources */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateX(-200px);
+  animation: slide-in 0.5s forwards;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.card h4 {
+  font-size: 20px;
+  color: #333;
+  margin: 15px 0;
+}
+
+.card p {
+  color: #555; /* Darker color for better readability */
+  font-size: 16px; /* Slightly larger text for better readability */
+  margin-bottom: 20px; /* Increased margin for better spacing */
+  line-height: 1.6; /* Better line spacing for readability */
+  text-align: center; /* Center-align text for a cleaner look */
+  font-family: 'Arial', sans-serif; /* Modern, sans-serif font for a cleaner look */
+  font-weight: 400; /* Slightly lighter weight for a softer feel */
+  letter-spacing: 0.5px; /* Add subtle letter spacing for better legibility */
+  opacity: 0.8; /* Slight transparency for a soft effect */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Hover effect to make it interactive */
+.card:hover p {
+  opacity: 1; /* Full opacity on hover to emphasize the content */
+  color: #333; /* Darker color on hover for better contrast */
+}
+
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card button {
+  background-color: #f7f7f7;
+  border: 2px solid #7e5509;
+  color: #936613;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #8a5f0f;
+  color: white;
+}
+
+/* Animating Card Appearance */
+@keyframes slide-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  /* Main Container */
-  .resources-container {
-    padding: 50px 40px;
-    background-size: cover; /* Ensure the background image covers the full container */
-    background-position: center; /* Center the image */
-    background-attachment: fixed; /* Optional: Keeps the background fixed for a parallax effect */
-    position: relative; /* For the overlay */
-    font-family: 'Georgia', serif;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    width: 100%; /* Ensure the container spans the entire width */
-    height: 100vh; /* Ensure it spans the full viewport height */
-    box-sizing: border-box; /* Include padding in width/height calculations */
-  }
-  
-  /* Overlay */
-  .resources-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* Dark overlay with some transparency */
-    z-index: -1; /* Ensures the overlay is behind the content */
-  }
-  
-  /* Tabs for Resources and Games (Centered Below Header) */
-  .tabs {
-    display: flex;
-    justify-content: center; /* Center the tabs */
-    gap: 20px;
-    width: 100%;
-    margin-bottom: 40px; /* Add space below the tabs */
-  }
-  
-  .tabs button {
-    background-color: #fff;
-    border: 2px solid #6c4a0a;
-    color: #ba8014;
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .tabs button:hover {
-    background-color: #ba8014;
-    color: white;
-  }
-  
-  .tabs .active {
-    background-color: #ba8014;
-    color: white;
-  }
-  
-  /* Search Section */
-  .search-section {
-    margin-bottom: 40px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-  }
-  
-  .search-section select,
-  .search-section input {
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    transition: border-color 0.3s ease;
-    width: 250px;
-  }
-  
-  .search-section input:focus,
-  .search-section select:focus {
-    border-color:#ba8014;
-  }
-  
-  .search-section button {
-    padding: 12px 20px;
-    background-color: #ba8014;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .search-section button:hover {
-    background-color: #946714;
-  }
-  
-  /* Card Layout for Resources and Games */
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-  }
-  
-  .card {
-    width: 300px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0;
-    transform: translateX(-200px);
-    animation: slide-in 0.5s forwards;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  }
-  
-  .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .card h4 {
-    font-size: 20px;
-    color: #333;
-    margin: 15px 0;
-  }
-  
-  .card p {
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
-  
-  .card a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .card button {
-    background-color: #f7f7f7;
-    border: 2px solid #7e5509;
-    color: #936613;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .card button:hover {
-    background-color: #8a5f0f;
-    color: white;
-  }
-  
-  /* Animating Card Appearance */
-  @keyframes slide-in {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  .game-info {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .game-info button {
-    background-color: #ba8014;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .game-info button:hover {
-    background-color: #ba8014;
-  }
-  
-  /* Header for Available Resources */
-  .resources-list h3 {
-    font-size: 24px;
-    color: #ba8014;
-    margin-bottom: 30px; /* Added margin-bottom for space */
-  }
-  
-  /* Header for Available Games for Stress Management */
-  .games-list h3 {
-    font-size: 24px;
-    color: #ba8014;
-    margin-bottom: 30px; /* Added margin-bottom for space */
-  }
-  
+}
+
+/* Header for Available Resources */
+.resources-list h3 {
+  font-size: 24px;
+  color: #ba8014;
+  margin-bottom: 30px; /* Added margin-bottom for space */
+}
