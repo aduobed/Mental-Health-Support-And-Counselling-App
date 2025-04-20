@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './UserAppointments.css';
 import { FaCalendarAlt, FaClock, FaQuoteLeft, FaSmile, FaPlusCircle } from 'react-icons/fa';
 import { PieChart, Pie, Cell } from 'recharts';
@@ -6,12 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 const moodOptions = ["Happy", "Anxious", "Stressed", "Calm", "Sad"];
 const COLORS = ['#2563eb', '#e0e0e0'];
-
-const sampleAppointments = [
-  { id: 1, title: "Therapy Session with Dr. Smith", date: "2025-04-20", time: "10:00 AM", status: "upcoming" },
-  { id: 2, title: "Mindfulness Workshop", date: "2025-03-15", time: "2:00 PM", status: "past" },
-  { id: 3, title: "Follow-up Call", date: "2025-04-22", time: "4:00 PM", status: "upcoming" },
-];
 
 const moodQuotes = {
   Happy: [
@@ -76,15 +70,26 @@ const moodQuotes = {
   ]
 };
 
-
 const UserAppointments = () => {
   const [mood, setMood] = useState('Happy');
   const [goalProgress] = useState(65);
-  const [stats] = useState({ totalAppointments: 5, upcoming: 2, past: 3 });
+  const [stats, setStats] = useState({ totalAppointments: 0, upcoming: 0, past: 0 });
+  const [appointments, setAppointments] = useState([]);
   const [selectedTab, setSelectedTab] = useState('upcoming');
   const [quote, setQuote] = useState('');
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('/api/user/appointments/stats')
+      .then(res => res.json())
+      .then(data => setStats(data))
+      .catch(err => console.error('Failed to fetch stats:', err));
+
+    fetch('/api/user/appointments')
+      .then(res => res.json())
+      .then(data => setAppointments(data))
+      .catch(err => console.error('Failed to fetch appointments:', err));
+  }, []);
 
   const handleMoodChange = (e) => {
     const newMood = e.target.value;
@@ -96,7 +101,7 @@ const UserAppointments = () => {
     navigate('/appointment');
   };
 
-  const filteredAppointments = sampleAppointments.filter(appt => appt.status === selectedTab);
+  const filteredAppointments = appointments.filter(appt => appt.status === selectedTab);
 
   const goalData = [
     { name: 'Achieved', value: goalProgress },
@@ -109,7 +114,7 @@ const UserAppointments = () => {
   };
 
   return (
-    <div className="appointments-container">
+    <div className="user-appointments-background">
       <div className="content-layout">
 
         {/* Left Side Section */}
@@ -159,17 +164,19 @@ const UserAppointments = () => {
           </section>
 
           <section className="section summary-stats">
-            <div className="stat-card">
-              <h3>Total Appointments</h3>
-              <p>{stats.totalAppointments}</p>
-            </div>
-            <div className="stat-card">
-              <h3>Upcoming</h3>
-              <p>{stats.upcoming}</p>
-            </div>
-            <div className="stat-card">
-              <h3>Past</h3>
-              <p>{stats.past}</p>
+            <div className="stat-cards-row">
+              <div className="stat-card">
+                <h3>Total Appointments</h3>
+                <p>{stats.totalAppointments}</p>
+              </div>
+              <div className="stat-card">
+                <h3>Upcoming</h3>
+                <p>{stats.upcoming}</p>
+              </div>
+              <div className="stat-card">
+                <h3>Past</h3>
+                <p>{stats.past}</p>
+              </div>
             </div>
           </section>
         </div>

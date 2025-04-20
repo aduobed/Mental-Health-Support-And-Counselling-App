@@ -112,3 +112,10 @@ body.login-page {
 .auth-container .signup-text:active {
   color: #c38209; /* Even darker color on click */
 }
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
