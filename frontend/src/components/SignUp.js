@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 
-const Signup = () => {
+const Signup = ({ role }) => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [first_name, setFirstname] = useState('');
     const [last_name, setLastname] = useState('');
+    const [speciality, setSpeciality] = useState('');
     const [phone_number, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,30 +21,30 @@ const Signup = () => {
     const handleSignupSubmit = async e => {
         e.preventDefault(); // Prevent the default form submission behavior
 
+        const apiUrl =
+            role === 'user'
+                ? 'http://localhost:8000/api/user/signup'
+                : 'http://localhost:8000/api/doctor/signup';
+
         try {
-            const response = await fetch(
-                'http://localhost:8000/api/user/signup',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        first_name,
-                        last_name,
-                        username,
-                        phone_number,
-                        email,
-                        password,
-                    }),
-                }
-            );
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    first_name,
+                    last_name,
+                    username,
+                    phone_number,
+                    email,
+                    password,
+                    ...(role === 'consultant' && { speciality }), // Add speciality if role is consultant
+                }),
+            });
 
             if (response.ok) {
-                const data = await response.json();
-
-                // Redirect to the dashboard or another page
-                navigate('/login', { state: { userData: data } });
+                navigate('/login');
             } else {
                 const errorData = await response.json();
                 setError(
@@ -58,7 +59,7 @@ const Signup = () => {
     return (
         <div className="auth-container">
             <h2>Signup</h2>
-            <form method='post'>
+            <form method="post">
                 <label htmlFor="firstname">First Name:</label>
                 <input
                     type="text"
@@ -94,6 +95,19 @@ const Signup = () => {
                     required
                     onChange={e => setPhone(e.target.value)}
                 />
+
+                {role === 'consultant' && (
+                    <>
+                        <label htmlFor="speciality">Speciality:</label>
+                        <input
+                            type="text"
+                            id="speciality"
+                            name="speciality"
+                            required
+                            onChange={e => setSpeciality(e.target.value)}
+                        />
+                    </>
+                )}
 
                 <label htmlFor="email">Email:</label>
                 <input
