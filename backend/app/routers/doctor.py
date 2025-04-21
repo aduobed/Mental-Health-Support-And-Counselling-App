@@ -17,6 +17,9 @@ router = APIRouter(
 async def get_all_doctors(db: Annotated[Session, Depends(start_db.get_db)]):
     doctors_data = db.query(db_models.Doctor).all()
 
+    if not doctors_data:
+        raise HTTPException(status_code=404, detail="No doctors found", headers={"X-Doctor": "Doctors not Found"})
+
     return doctors_data
 
 
