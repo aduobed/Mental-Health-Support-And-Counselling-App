@@ -9,12 +9,11 @@ const Login = ({ role }) => {
     const [error, setError] = useState('');
 
     const handleSignUpClick = () => {
-        // Navigate to the SignUp page
         navigate('/signup');
     };
 
     const handleLoginSubmit = async e => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault();
 
         const apiUrl =
             role === 'user'
@@ -35,24 +34,13 @@ const Login = ({ role }) => {
 
             if (response.ok) {
                 const data = await response.json();
-
-                // Redirect based on role
-                if (role === 'user') {
-                    navigate('/home', { state: { userData: data } });
-                } else if (role === 'consultant') {
-                    navigate('/UserAppointments', { state: { userData: data } });
-                } else {
-                    // fallback if role is not recognized
-                    navigate('/home', { state: { userData: data } });
-                }
+                navigate('/UserAppointments', { state: { userData: data } });
             } else {
-                const errorData = await response.json();
-                setError(errorData.detail || 'Login failed. Please try again.');
-                alert(`Error: ${errorData.detail}`); // Show an alert with the error detail
+                setError('Login unsuccessful. Please try again.');
             }
         } catch (err) {
-            console.error('Error during login:', err);
-            setError('An error occurred. Please try again later.');
+            console.error('Login error:', err);
+            setError('Login unsuccessful. Please try again.');
         }
     };
 
@@ -83,6 +71,8 @@ const Login = ({ role }) => {
                     Login
                 </button>
             </form>
+
+            {error && <p className="error-message">{error}</p>}
 
             <p className="signup-link">
                 First time here?
