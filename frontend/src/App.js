@@ -18,7 +18,6 @@ import logo from './Logo.png';
 import UserAppointments from './components/UserAppointments';
 import ChatbotButton from './components/ChatbotButton';
 
-
 // Create a UserContext
 export const UserContext = createContext(null);
 
@@ -38,7 +37,7 @@ function App() {
 
     const handleRoleSelect = role => {
         setRoleSelection(role);
-        navigate('/login');
+        // navigate('/login');
         setIsProfileMenuOpen(false);
     };
 
@@ -93,11 +92,21 @@ function App() {
                         {isProfileMenuOpen && (
                             <div className="profile-dropdown">
                                 <button
-                                    onClick={() => handleRoleSelect('user')}
+                                    onClick={() => {
+                                        if (
+                                            location.pathname !== '/login' &&
+                                            userData !== null &&
+                                            userData.username
+                                        ) {
+                                            navigate('/UserAppointments');
+                                        } else {
+                                            handleRoleSelect('user');
+                                        }
+                                    }}
                                 >
-                                    {userData
-                                        ? `Welcome, ${userData.username}`
-                                        : 'User'}
+                                    {!userData
+                                        ? 'User'
+                                        : `Welcome, ${userData.username}`}
                                 </button>
                                 {!userData && (
                                     <button
@@ -139,12 +148,14 @@ function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/resources" element={<Resources />} />
-                        <Route path="/UserAppointments" element={<UserAppointments />} />
+                        <Route
+                            path="/UserAppointments"
+                            element={<UserAppointments />}
+                        />
                         <Route
                             path="/appointment"
                             element={<AppointmentBooking />}
                         />
-                        
                         <Route
                             path="/login"
                             element={<Login role={roleSelection} />}
@@ -153,9 +164,8 @@ function App() {
                             path="/signup"
                             element={<Signup role={roleSelection} />}
                         />
-                        
                     </Routes>
-                    
+
                     <ChatbotButton />
                 </div>
             </div>

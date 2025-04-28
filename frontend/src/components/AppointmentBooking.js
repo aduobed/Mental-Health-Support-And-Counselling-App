@@ -14,7 +14,9 @@ const AppointmentBooking = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/doctor');
+                const response = await fetch(
+                    'http://localhost:8000/api/doctor'
+                );
                 if (response.ok) {
                     const data = await response.json();
                     setDoctors(data || []); // Extract the array of doctors from the object
@@ -30,11 +32,11 @@ const AppointmentBooking = () => {
     }, []);
 
     // Handle the user sign-up status selection
-    const handleSignUpStatusChange = (e) => {
+    const handleSignUpStatusChange = e => {
         setIsSignedUp(e.target.value === 'yes');
     };
 
-    const handleFormSubmit = async (e) => {
+    const handleFormSubmit = async e => {
         e.preventDefault(); // Prevent default form submission
 
         const formData = {
@@ -56,10 +58,16 @@ const AppointmentBooking = () => {
 
             if (response.ok) {
                 alert('Appointment booked successfully!');
-                navigate('/home'); // Redirect to the home page
+                navigate('/UserAppointments', {
+                    state: { userData: userData },
+                });
             } else {
                 const errorData = await response.json();
-                alert(`Failed to book appointment: ${errorData.detail || 'Unknown error'}`);
+                alert(
+                    `Failed to book appointment: ${
+                        errorData.detail || 'Unknown error'
+                    }`
+                );
             }
         } catch (error) {
             console.error('Error booking appointment:', error);
@@ -69,7 +77,8 @@ const AppointmentBooking = () => {
 
     return (
         <div className="appointment-page">
-            <div className="appointment-background"></div> {/* Background layer */}
+            <div className="appointment-background"></div>{' '}
+            {/* Background layer */}
             <div className="appointment-booking">
                 <h2>Book an Appointment with a Consultant</h2>
 
@@ -120,11 +129,13 @@ const AppointmentBooking = () => {
                                 id="doctor"
                                 name="doctor"
                                 value={selectedDoctor}
-                                onChange={(e) => setSelectedDoctor(e.target.value)}
+                                onChange={e =>
+                                    setSelectedDoctor(e.target.value)
+                                }
                                 required
                             >
                                 <option value="">Select a doctor</option>
-                                {doctors.map((doctor) => (
+                                {doctors.map(doctor => (
                                     <option key={doctor.id} value={doctor.id}>
                                         {doctor.username} - {doctor.speciality}
                                     </option>
@@ -145,7 +156,13 @@ const AppointmentBooking = () => {
 
                         <div className="form-group">
                             <label>
-                                <input type="checkbox" name="confirm" required /> I confirm that the details provided are accurate.
+                                <input
+                                    type="checkbox"
+                                    name="confirm"
+                                    required
+                                />{' '}
+                                I confirm that the details provided are
+                                accurate.
                             </label>
                         </div>
 

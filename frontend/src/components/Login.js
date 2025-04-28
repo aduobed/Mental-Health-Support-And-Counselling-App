@@ -16,9 +16,9 @@ const Login = ({ role }) => {
         e.preventDefault();
 
         const apiUrl =
-            role === 'user'
-                ? 'http://localhost:8000/api/user/login'
-                : 'http://localhost:8000/api/doctor/login';
+            role === 'consultant'
+                ? 'http://localhost:8000/api/doctor/login'
+                : 'http://localhost:8000/api/user/login';
 
         try {
             const response = await fetch(apiUrl, {
@@ -46,7 +46,7 @@ const Login = ({ role }) => {
 
     return (
         <div className="auth-container">
-            <h2>Welcome, {role === 'user' ? 'User' : 'Consultant'}!</h2>
+            <h2>Welcome, {role === 'consultant' ? 'Consultant' : 'User'}!</h2>
 
             <form method="post">
                 <label htmlFor="username">Username:</label>
