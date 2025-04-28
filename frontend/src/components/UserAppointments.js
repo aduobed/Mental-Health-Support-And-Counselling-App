@@ -144,6 +144,30 @@ const UserAppointments = () => {
         });
     };
 
+    const handleDeleteAppointment = async bookingId => {
+        try {
+            const response = await fetch(
+                `http://localhost:8000/api/booking/${bookingId}`,
+                {
+                    method: 'DELETE',
+                }
+            );
+
+            if (response.ok) {
+                alert('Appointment deleted successfully!');
+                // Update the appointments list after deletion
+                setAppointments(prevAppointments =>
+                    prevAppointments.filter(appt => appt.id !== bookingId)
+                );
+            } else {
+                alert('Failed to delete the appointment.');
+            }
+        } catch (err) {
+            console.error('Error deleting appointment:', err);
+            alert('An error occurred. Please try again later.');
+        }
+    };
+
     const filteredAppointments = appointments.filter(
         appt => appt.booking_status === selectedTab
     );
@@ -293,7 +317,12 @@ const UserAppointments = () => {
                                         <button className="button reschedule">
                                             Reschedule
                                         </button>
-                                        <button className="button cancel">
+                                        <button
+                                            className="button cancel"
+                                            onClick={() =>
+                                                handleDeleteAppointment(appt.id)
+                                            }
+                                        >
                                             Cancel
                                         </button>
                                     </div>
