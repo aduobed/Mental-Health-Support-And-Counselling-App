@@ -65,4 +65,5 @@ jobs:
                   MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
                   MYSQL_DATABASE: testdb
                   MYSQL_USER: user
+                  MYSQL_PASSWORD: password
                   DATABASE_URL: mysql+pymysql://user:password@db:3309/testdb
