@@ -39,9 +39,9 @@ jobs:
         run: |
           docker build -t myapp/backend:latest ./backend
 
-      # - name: Build frontend Docker image
-      #   run: |
-      #     docker build -t myapp/frontend:latest ./frontend
+      - name: Build frontend Docker image
+        run: |
+          docker build -t myapp/frontend:latest ./frontend
 
       # - name: Run backend container
       #   run: |
@@ -51,9 +51,9 @@ jobs:
       #   run: |
       #     docker exec backend_container pytest
 
-      - name: Run frontend container
-        run: |
-          docker run -d --name frontend_container --network host myapp/frontend:latest
+      # - name: Run frontend container
+      #   run: |
+      #     docker run -d --name frontend_container --network host myapp/frontend:latest
 
       # - name: Run frontend tests
       #   run: |
