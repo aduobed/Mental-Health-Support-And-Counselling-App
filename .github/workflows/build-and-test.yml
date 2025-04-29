@@ -51,9 +51,9 @@ jobs:
       #   run: |
       #     docker exec backend_container pytest
 
-      # - name: Run frontend container
-      #   run: |
-      #     docker run -d --name frontend_container --network host myapp/frontend:latest
+      - name: Run frontend container
+        run: |
+          docker run -d --name frontend_container --network host myapp/frontend:latest
 
       # - name: Run frontend tests
       #   run: |
