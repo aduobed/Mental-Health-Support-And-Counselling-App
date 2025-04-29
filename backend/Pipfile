@@ -10,10 +10,12 @@ requests = "*"
 python-jose = {extras = ["cryptography"], version = "*"}
 pymysql = "*"
 sqlalchemy = "*"
+passlib = {extras = ["bcrpt"], version = "*"}
 python-dotenv = "*"
 python-multipart = "*"
 pytest = "*"
 httpx = "*"
+bcrypt = "*"
 
 [dev-packages]
 

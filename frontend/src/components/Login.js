@@ -9,61 +9,54 @@ const Login = ({ role }) => {
     const [error, setError] = useState('');
 
     const handleSignUpClick = () => {
-        // Navigate to the SignUp page
         navigate('/signup');
     };
 
     const handleLoginSubmit = async e => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault();
+
+        const apiUrl =
+            role === 'consultant'
+                ? 'http://localhost:8000/api/doctor/login'
+                : 'http://localhost:8000/api/user/login';
 
         try {
-            const response = await fetch(
-                'http://localhost:8000/api/user/login',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username,
-                        password,
-                    }),
-                }
-            );
-
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            });
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data);
-
-                // Redirect to the dashboard or another page
-                navigate('/home', { state: { userData: data } });
+                navigate('/UserAppointments', { state: { userData: data } });
             } else {
-                const errorData = await response.json();
-                setError(errorData.detail || 'Login failed. Please try again.');
+                setError('Login unsuccessful. Please try again.');
             }
         } catch (err) {
-            console.error('Error during login:', err);
-            setError('An error occurred. Please try again later.');
+            console.error('Login error:', err);
+            setError('Login unsuccessful. Please try again.');
         }
     };
 
     return (
         <div className="auth-container">
-            <h2>Welcome, {role === 'user' ? 'User' : 'Consultant'}!</h2>
+            <h2>Welcome, {role === 'consultant' ? 'Consultant' : 'User'}!</h2>
 
             <form method="post">
-                <label htmlFor="lastname">Last Name:</label>
+                <label htmlFor="username">Username:</label>
                 <input
                     type="text"
-                    id="lastname"
+                    id="username"
                     name="username"
                     required
                     onChange={e => setUsername(e.target.value)}
                 />
-
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
 
                 <label htmlFor="password">Password:</label>
                 <input
@@ -79,9 +72,12 @@ const Login = ({ role }) => {
                 </button>
             </form>
 
+            {error && <p className="error-message">{error}</p>}
+
             <p className="signup-link">
                 First time here?
                 <span onClick={handleSignUpClick} className="signup-text">
+                    <br />
                     Sign up
                 </span>
             </p>

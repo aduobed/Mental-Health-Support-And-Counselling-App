@@ -1,0 +1,308 @@
+:root {
+  --primary: #b67c0e; /* Dark mustard yellow (your header color) */
+  --secondary: #633708; /* Terracotta - warm and complementary */
+  --accent-light: #fdfaf4; /* Ivory-like light accent */
+  --highlight: #191419; /* Deep plum for accents and hover */
+  --light-bg: #f6f3ed; /* Soft neutral sand background */
+  --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  --hover-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  --text-color: #000; /* Pure black for high readability */
+}
+
+body {
+  background-image: url('./Images/userapp_bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: var(--light-bg); /* fallback color */
+}
+
+/* Layout and general structure */
+.content-layout {
+  display: flex;  
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.content-layout::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.7); /* Light overlay */
+  z-index: 0;
+  border-radius: 18px;
+}
+.content-layout > * {
+  position: relative;
+  z-index: 1;
+}
+
+.left-side {
+  flex: 0 0 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.right-side {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* Section styling */
+.section {
+  background: var(--accent-light);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  color: var(--text-color);
+}
+
+.section:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--hover-shadow);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  border-radius: 0 0 12px 12px;
+}
+
+/* Header (Welcome) */
+.welcome-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.welcome-header img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-header h1 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  letter-spacing: 0.5px;
+}
+
+.welcome-header p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
+/* Book button */
+.book-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.book-btn:hover {
+  background-color: var(--highlight);
+  transform: translateY(-4px);
+  box-shadow: var(--hover-shadow);
+}
+
+/* Mood Tracker */
+.mood-tracker h3 {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.mood-tracker select {
+  padding: 0.8rem 1.4rem;
+  border-radius: 12px;
+  border: 1px solid var(--secondary);
+  font-size: 1.1rem;
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mood-tracker select:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 10px rgba(231, 111, 0, 0.15);
+}
+
+/* Inspirational Quote */
+.inspirational-quote p {
+  font-style: italic;
+  color: #666;
+  margin-top: 0.6rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.inspirational-quote:hover p {
+  color: var(--highlight);
+}
+
+.goal-progress {
+  text-align: center;
+  background-color: var(--light-bg);
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+
+  /* Add this to center contents vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-progress h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.3rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* Stat Cards */
+.stat-card {
+  padding: 1.7rem;
+  background-color: #fff5ea;
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--text-color);
+  flex: 1;
+  min-width: 180px;
+  text-align: center;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hover-shadow);
+}
+
+.stat-cards-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+}
+
+
+.stat-card p {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
+/* Right-side appointments */
+.right-side .appointments {
+  background-color: var(--accent-light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  height: auto;
+  color: var(--text-color);
+}
+
+.appointment-card {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 1.3rem;
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 250px;
+  overflow: hidden;
+}
+
+.appointment-card h3 {
+  color: var(--text-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.appointment-card p {
+  color: #555;
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.appointment-card .actions {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.appointment-card .button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.7rem 1.3rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.appointment-card .button:hover {
+  background-color: var(--highlight);
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow);
+}
+
+/* Tab Header */
+.tab-header button {
+  background: none;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 0.8rem 1.6rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-header button.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+.tab-header button:hover {
+  background-color: var(--highlight);
+  color: white;
+}

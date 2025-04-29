@@ -42,9 +42,9 @@ class Booking(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     doctor_id = Column(Integer, ForeignKey("doctors.id"), nullable=False)
-    booking_date = Column(DateTime, default=datetime.datetime.date)
-    booking_time = Column(DateTime, default=datetime.datetime.utcnow)
-    status = Column(String(50), default="pending")
+    booking_date = Column(String, default=datetime.date.today)
+    booking_time = Column(String, default=datetime.datetime.now)
+    booking_status = Column(String(50), default="pending")
     booking_note = Column(String(255), nullable=True)
     booking_feedback = Column(String(255), nullable=True)
 
