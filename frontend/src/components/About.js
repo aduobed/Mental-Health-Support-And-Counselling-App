@@ -31,12 +31,13 @@ const About = () => {
           >
             <div className={`flip-card-inner ${hovered === 0 ? 'flipped' : ''}`}>
               <div className="flip-card-front">
-                <h3>Secure User Authentication?</h3>
+                <h3>Secure User Authentication</h3>
               </div>
               <div className="flip-card-back">
-                <p>
-                  It’s the system we use to keep your personal data safe and secure. This allows you to create accounts, log in, and manage your
-                  information with ease, all while ensuring that your data remains private and encrypted.
+              <p>
+                  Your safety and privacy are at the heart of everything we do. Our secure authentication system ensures that your personal information 
+                  is protected through state-of-the-art encryption methods. Create your profile confidently, knowing that you have full control over 
+                  your mental health journey, in a space built on trust, respect, and confidentiality.
                 </p>
               </div>
             </div>
@@ -50,12 +51,13 @@ const About = () => {
           >
             <div className={`flip-card-inner ${hovered === 1 ? 'flipped' : ''}`}>
               <div className="flip-card-front">
-                <h3>Mental Health Resources?</h3>
+                <h3>Mental Health Resources</h3>
               </div>
               <div className="flip-card-back">
-                <p>
-                  These are the tools and content we provide, including articles, guides, videos, and expert advice to help you tackle mental
-                  health challenges like stress, anxiety, or depression.
+              <p>
+                  Empower yourself with a wealth of expertly curated content — from educational articles and practical guides to mindfulness exercises 
+                  and inspirational videos. Whether you’re looking to manage stress, build emotional resilience, or understand mental health better, 
+                  our resources are designed to inform, uplift, and support your unique path to well-being.
                 </p>
               </div>
             </div>
@@ -69,12 +71,13 @@ const About = () => {
           >
             <div className={`flip-card-inner ${hovered === 2 ? 'flipped' : ''}`}>
               <div className="flip-card-front">
-                <h3>Stress Levels?</h3>
+                <h3>Stress Levels</h3>
               </div>
               <div className="flip-card-back">
-                <p>
-                  We use fun games that interact with your brain and reactions to analyze your stress level. Through these activities, we give you
-                  actionable advice on reducing stress.
+              <p>
+                  Discover a fun and engaging way to understand your stress patterns! Through interactive games that analyze cognitive responses, 
+                  we provide personalized insights into your stress levels. These insights are not just numbers — they are a bridge to actionable 
+                  strategies for mindfulness, self-care, and emotional growth.
                 </p>
               </div>
             </div>
@@ -88,12 +91,13 @@ const About = () => {
           >
             <div className={`flip-card-inner ${hovered === 3 ? 'flipped' : ''}`}>
               <div className="flip-card-front">
-                <h3> AI Chatbot Support?</h3>
+                <h3> AI Chatbot Support</h3>
               </div>
               <div className="flip-card-back">
-                <p>
-                  Our AI chatbot is designed to assist you 24/7 with real-time support. Whether you need mental health advice or just someone to
-                  talk to, the chatbot is there to provide guidance and resources based on your needs.
+              <p>
+                  Meet your always-available companion! Our intelligent AI chatbot offers 24/7 emotional support, guidance, and encouragement. 
+                  Whether you need coping techniques, motivational messages, or just a friendly conversation, our chatbot is here to help you 
+                  feel seen, heard, and supported at any time, day or night.
                 </p>
               </div>
             </div>
@@ -107,12 +111,13 @@ const About = () => {
           >
             <div className={`flip-card-inner ${hovered === 4 ? 'flipped' : ''}`}>
               <div className="flip-card-front">
-                <h3>Contact Us?</h3>
+                <h3>Contact Us</h3>
               </div>
               <div className="flip-card-back">
-                <p>
-                  You can reach our support team via email at <strong>support@example.com</strong>. We're here to help you with any questions or
-                  concerns you might have.
+              <p>
+                  We are here for you. If you have questions, suggestions, or need personalized support, please don’t hesitate to reach out to us at 
+                  <strong> support@example.com</strong>. Your feedback helps us grow and evolve, and together, we can build a community that thrives 
+                  on compassion, understanding, and hope.
                 </p>
               </div>
             </div>
