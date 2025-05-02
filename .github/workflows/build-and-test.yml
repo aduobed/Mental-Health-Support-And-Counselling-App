@@ -1,67 +1,69 @@
-# name: Build and Test
+name: Build and Test
 
-# on:
-#   pull_request:
-#     branches:
-#       - main
-#   push:
-#     branches:
-#       - main
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
 
-# jobs:
-#   build-and-test:
-#     runs-on: ubuntu-latest
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
 
-#     services:
-#       db:
-#         image: mysql:8.0
-#         env:
-#           MYSQL_ROOT_PASSWORD: secret
-#           MYSQL_DATABASE: testdb
-#           MYSQL_USER: user
-#           MYSQL_PASSWORD: password
-#         ports:
-#           - 3306:3306
-#         options: >-
-#           --health-cmd="mysqladmin ping --silent"
-#           --health-interval=10s
-#           --health-timeout=5s
-#           --health-retries=3
+        services:
+            db:
+                image: mysql:8.0
+                env:
+                    MYSQL_ROOT_PASSWORD: secret
+                    MYSQL_DATABASE: testdb
+                    MYSQL_USER: user
+                    MYSQL_PASSWORD: password
+                ports:
+                    - 3306:3306
+                options: >-
+                    --health-cmd="mysqladmin ping --silent"
+                    --health-interval=10s
+                    --health-timeout=5s
+                    --health-retries=3
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-#       - name: Set up Docker Buildx
-#         uses: docker/setup-buildx-action@v1
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v1
 
-#       - name: Build backend Docker image
-#         run: |
-#           docker build -t myapp/backend:latest ./backend
+            - name: Build backend Docker image
+              run: |
+                  docker build -t myapp/backend:latest ./backend
 
-#       - name: Build frontend Docker image
-#         run: |
-#           docker build -t myapp/frontend:latest ./frontend
+            - name: Build frontend Docker image
+              run: |
+                  docker build -t myapp/frontend:latest ./frontend
 
-#       - name: Run backend container
-#         run: |
-#           docker run -d --name backend_container --network host myapp/backend:latest
+            # - name: Run backend container
+            #   run: |
+            #     docker run -d --name backend_container --network host myapp/backend:latest
 
-#       - name: Run backend tests
-#         run: |
-#           docker exec backend_container pytest
+            # - name: Run backend tests
+            #   run: |
+            #     docker exec backend_container pytest
 
-#       - name: Run frontend container
-#         run: |
-#           docker run -d --name frontend_container --network host myapp/frontend:latest
+            - name: Run frontend container
+              run: |
+                  docker run -d --name frontend_container --network host myapp/frontend:latest
 
-#       - name: Run frontend tests
-#         run: |
-#           docker exec frontend_container yarn test
-
-#       - name: Test Docker Compose
-#         run: |
-#           docker-compose -f docker-compose.yml up --build -d
-#           docker-compose -f docker-compose.yml run backend pytest
-#           docker-compose -f docker-compose.yml run frontend yarn test
-#           docker-compose -f docker-compose.yml down
+            - name: Test Docker Compose
+              run: |
+                  docker compose -f docker-compose.yml up --build -d
+                  docker compose -f docker-compose.yml down
+              env:
+                  MYSQL_ROOT_PASSWORD: password
+                  MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+                  MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+                  MYSQL_DATABASE: testdb
+                  MYSQL_USER: user
+                  MYSQL_PASSWORD: password
+                  DATABASE_URL: mysql+pymysql://user:password@db:3309/testdb
